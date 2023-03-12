@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <title>Lista de Filmes</title>
+</head>
+<body>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Likes</th>
+        <th scope="col">ID</th>
+        <th scope="col">Título</th>
+        <th scope="col">Gênero</th>
+        <th scope="col">Duração</th>
+        <th scope="col">Sinopse</th>
+        <th scope="col">Imagem</th>
+        <th scope="col">Imdb</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+    </tr>
+
+    </thead>
+    <tbody>
+    <tr th:each="filme : ${filmes}" scope="row">
+        <td th:text="${filme.likes}"></td>
+        <td th:text="${filme.id}"></td>
+        <td th:text="${filme.titulo}"></td>
+        <td th:text="${filme.genero}"></td>
+        <td th:text="${filme.duracao}"></td>
+        <td th:text="${filme.sinopse}"></td>
+        <td><img height="80" width="80" th:src="${filme.imagem}"></td>
+        <td th:text="${filme.imdb}"></td>
+        <td><a class="btn btn-outline-primary" th:href="@{/filme/adicionarFilmeFavorito/{id}(id=${filme.id})}">Adicionar aos favoritos</a></td>
+        <td><a class="btn btn-outline-primary" th:href="@{/filme/removerFilmeFavorito/{id}(id=${filme.id})}">Remover dos favoritos</a></td>
+        <td><a class="btn btn-outline-primary" th:href="@{/filme/like/{id}(id=${filme.id})}">Like</a></td>
+        <td><a class="btn btn-outline-primary" th:href="@{/filme/deslike/{id}(id=${filme.id})}">Deslike</a></td>
+        <td><a class="btn btn-outline-primary" th:href="@{/filme/editar/{id}(id=${filme.id})}">Editar</a></td>
+        <td><a class="btn btn-outline-primary" th:href="@{/filme/remover/{id}(id=${filme.id})}" onclick="return confirm('Tem certeza que deseja excluir este filme?')">Excluir</a></td>
+    </tr>
+    </tbody>
+
+</table>
+
+<a class="btn btn-outline-primary" th:href="@{/filme/novo}">Adicionar novo filme</a>
+<a class="btn btn-outline-primary" th:href="@{/filme/filmesFavoritos}">Filmes favoritos</a>
+<a class="btn btn-outline-primary" th:href="@{/filme/salvar}">Salvar</a>
+<a class="btn btn-outline-primary" th:href="@{/filme/carregar}">Carregar</a>
+<a class="btn btn-outline-primary" th:href="@{/}">Voltar</a>
+</body>
+</html>
